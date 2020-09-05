@@ -9,7 +9,7 @@ script: !include scripts.yaml
 
 input_boolean:
   house_guests:
-    name: Are guests are staying in the house?
+    name: Are guests staying in the house?
     icon: mdi:user-multiple-plus
 
 sensor:
