@@ -1,0 +1,23 @@
+---
+- id: '1599290704098'
+  name: Evening
+  entities:
+    light.sengled_2:
+      brightness: 91
+      color_temp: 352
+      friendly_name: sengled 2 on
+      hs_color:
+        - 45
+        - 14.286
+      max_mireds: 500
+      min_mireds: 154
+      off_brightness:
+      rgb_color:
+        - 255
+        - 245
+        - 218
+      state: 'on'
+      supported_features: 59
+      xy_color:
+        - 0.353
+        - 0.356

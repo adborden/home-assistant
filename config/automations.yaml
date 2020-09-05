@@ -1,0 +1,151 @@
+---
+- id: '1598808423224'
+  alias: Turn on lights at sunset
+  description: Turns on the front lights when the sun starts to set.
+  mode: single
+  trigger:
+    - event: sunset
+      offset: -01:00
+      platform: sun
+  condition: []
+  action:
+    - event: !secret aaron_notify
+      event_data:
+        message: The sun is setting, I am turning on the lights.
+    - scene: scene.evening
+
+
+- id: '1598810940559'
+  alias: Test notification
+  description: Triggers a global test notification.
+  mode: single
+  trigger:
+    - at: '11:11:00'
+      platform: time
+  condition: []
+  action:
+    - service: !secret aaron_notify
+      data:
+        message: hi hi
+
+- id: '1599274303875'
+  alias: AQI (Moderate)
+  description: Update AQI indicator (Moderate)
+  mode: single
+  trigger:
+    - above: '50'
+      below: '100'
+      entity_id: sensor.waqi_oakland_laney_college_alameda_california
+      platform: numeric_state
+  condition: []
+  action:
+    - service: light.turn_on
+      data:
+        brightness_pct: 75
+        entity_id: light.sengled_1
+        rgb_color:
+          - 255
+          - 237
+          - 0
+
+
+- id: '1599275194688'
+  alias: AQI (Good)
+  description: AQI Indicator (Good)
+  mode: single
+  trigger:
+    - below: '50'
+      entity_id: sensor.waqi_oakland_laney_college_alameda_california
+      platform: numeric_state
+  condition: []
+  action:
+    - service: light.turn_on
+      data:
+        brightness_pct: 75
+        entity_id: light.sengled_1
+        rgb_color:
+          - 0
+          - 255
+          - 0
+
+
+- id: '1599275329657'
+  alias: AQI (USG)
+  description: AQI Indicator (Unhealthy for Sensitive Groups)
+  mode: single
+  trigger:
+    - above: '100'
+      below: '150'
+      entity_id: sensor.waqi_oakland_laney_college_alameda_california
+      platform: numeric_state
+  condition: []
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 75
+        entity_id: light.sengled_1
+        rgb_color:
+          - 255
+          - 127
+          - 0
+
+- id: '1599275449729'
+  alias: AQI (Unhealthy)
+  description: AQI Indicator (Unhealthy)
+  mode: single
+  trigger:
+    - above: '150'
+      below: '200'
+      entity_id: sensor.waqi_oakland_laney_college_alameda_california
+      platform: numeric_state
+  condition: []
+  action:
+    - data:
+        brightness_pct: 75
+        entity_id: light.sengled_1
+        rgb_color:
+          - 255
+          - 0
+          - 0
+      service: light.turn_on
+
+
+- id: '1599275532293'
+  alias: AQI (Very Unhealthy)
+  description: Update AQI Indicator (Very Unhealthy)
+  mode: single
+  trigger:
+    - above: '200'
+      below: '300'
+      entity_id: sensor.waqi_oakland_laney_college_alameda_california
+      platform: numeric_state
+  condition: []
+  action:
+    - data:
+        brightness_pct: 75
+        entity_id: light.sengled_1
+        rgb_color:
+          - 255
+          - 0
+          - 127
+      service: light.turn_on
+
+
+- id: '1599275626821'
+  alias: AQI (Hazardous)
+  description: Update AQI Indicator (Hazardous)
+  mode: single
+  trigger:
+    - above: '300'
+      entity_id: sensor.waqi_oakland_laney_college_alameda_california
+      platform: numeric_state
+  condition: []
+  action:
+    - data:
+        brightness_pct: 75
+        entity_id: light.sengled_1
+        rgb_color:
+          - 255
+          - 100
+          - 255
+      service: light.turn_on

@@ -1,0 +1,20 @@
+---
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+automation: !include automations.yaml
+group: !include groups.yaml
+scene: !include scenes.yaml
+script: !include scripts.yaml
+
+input_boolean:
+  house_guests:
+    name: Are guests are staying in the house?
+    icon: mdi:user-multiple-plus
+
+sensor:
+  - platform: waqi
+    token: !secret waqi_api_token
+    locations: !secret waqi_locations
+
+wake_on_lan:
