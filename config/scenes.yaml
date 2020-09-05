@@ -21,3 +21,16 @@
       xy_color:
         - 0.353
         - 0.356
+
+
+- id: '1599339638919'
+  name: Late night
+  entities:
+    light.sengled_2:
+      friendly_name: sengled E11-N1EA 6d710700 level, light_color, on_off
+      max_mireds: 500
+      min_mireds: 154
+      restored: true
+      state: unavailable
+      supported_features: 59
+  icon: mdi:night-sky

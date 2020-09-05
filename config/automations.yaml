@@ -149,3 +149,15 @@
           - 100
           - 255
       service: light.turn_on
+
+
+- id: '1599339577981'
+  alias: Late night
+  description: Late night when the house turns down.
+  trigger:
+    - at: 00:30:00
+      platform: time
+  condition: []
+  action:
+    - scene: scene.late_night
+  mode: single
